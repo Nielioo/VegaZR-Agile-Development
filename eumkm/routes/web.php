@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UMKMController;
+use App\Http\Controllers\BookingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,4 +26,15 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+
+    // Route UMKM
+    Route::get('/umkm', [App\Http\Controllers\UMKMController::class, 'index'])->name('umkm');
+    Route::get('/umkm/show', [App\Http\Controllers\UMKMController::class, 'show'])->name('umkm.show');
+
+    Route::get('/events/{id}/show', [App\Http\Controllers\EventController::class, 'show'])->name('events.show');
+
+    // Route booking
+    Route::get('/booking/{id}', [App\Http\Controllers\BookingController::class, 'index'])->name('booking.index');
+    Route::post('/booking/store', [App\Http\Controllers\BookingController::class, 'store'])->name('booking.store');
 });

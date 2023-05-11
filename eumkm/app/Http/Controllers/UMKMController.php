@@ -6,6 +6,9 @@ use App\Models\UMKM;
 use App\Http\Requests\StoreUMKMRequest;
 use App\Http\Requests\UpdateUMKMRequest;
 
+use DB;
+
+
 class UMKMController extends Controller
 {
     /**
@@ -14,6 +17,20 @@ class UMKMController extends Controller
     public function index()
     {
         //
+
+
+        $umkms = UMKM::latest()->get();
+
+        $data['umkm'] = DB::table('u_m_k_m_s')
+            ->leftJoin('bookings', 'u_m_k_m_s.id', '=', 'bookings.umkm_id')
+            ->select('u_m_k_m_s.*', 'bookings.proof_payment')
+            ->get();
+
+        // var_dump($data['umkm']);
+        // die();
+
+        return view('umkm.index', compact('data'));
+        // return view('umkm.index');
     }
 
     /**
@@ -35,9 +52,16 @@ class UMKMController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(UMKM $uMKM)
+    public function show()
     {
         //
+        $data['umkm'] = DB::table('u_m_k_m_s')
+            ->leftJoin('bookings', 'u_m_k_m_s.id', '=', 'bookings.umkm_id')
+            ->select('u_m_k_m_s.*', 'bookings.proof_payment')
+            ->where('bookings.proof_payment', '=', 'Paid')
+            ->get();
+
+        return view('umkm.show', compact('data'));
     }
 
     /**
