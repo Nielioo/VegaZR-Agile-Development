@@ -16,7 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->date('start_date');
             $table->date('end_date');
+            $table->time('start_time');
+            $table->time('end_time');
             $table->string('map_tenant');
+            $table->string('poster');
             $table->string('location_address');
             $table->timestamps();
         });

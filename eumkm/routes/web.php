@@ -32,7 +32,8 @@ Route::middleware([
     Route::get('/umkm/show', [App\Http\Controllers\UMKMController::class, 'show'])->name('umkm.show');
 
     // Event
-    Route::get('/events/{id}/show', [App\Http\Controllers\EventController::class, 'show'])->name('events.show');
+    Route::get('/events/', [App\Http\Controllers\EventController::class, 'index'])->name('event');
+    Route::get('/events/{id}/show', [App\Http\Controllers\EventController::class, 'show'])->name('event.show');
 
     // Booking
     Route::get('/booking/{id}', [App\Http\Controllers\BookingController::class, 'index'])->name('booking.index');
