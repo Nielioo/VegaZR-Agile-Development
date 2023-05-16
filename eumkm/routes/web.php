@@ -15,8 +15,8 @@ use App\Http\Controllers\BookingController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('dashboard');
+})->name('/');
 
 Route::middleware([
     'auth:sanctum',
@@ -27,14 +27,14 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-
-    // Route UMKM
+    // UMKM
     Route::get('/umkm', [App\Http\Controllers\UMKMController::class, 'index'])->name('umkm');
     Route::get('/umkm/show', [App\Http\Controllers\UMKMController::class, 'show'])->name('umkm.show');
 
+    // Event
     Route::get('/events/{id}/show', [App\Http\Controllers\EventController::class, 'show'])->name('events.show');
 
-    // Route booking
+    // Booking
     Route::get('/booking/{id}', [App\Http\Controllers\BookingController::class, 'index'])->name('booking.index');
     Route::post('/booking/store', [App\Http\Controllers\BookingController::class, 'store'])->name('booking.store');
 });

@@ -1,15 +1,24 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+@section('title', 'Dashboard')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <x-welcome />
-            </div>
+<x-app-layout>
+    <div>
+        <x-slot name="header">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Dashboard') }}
+            </h2>
+        </x-slot>
+
+        @if (Auth::user())
+        <div>
+            <h1>Halo, {{ Auth::user()->name }}</h1>
         </div>
+        
+        @else
+        <div>
+            <h1>Welcome to E-UMKM </h1>
+        </div>
+        @endif
+
+        
     </div>
 </x-app-layout>

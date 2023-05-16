@@ -2,22 +2,42 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{-- HyperText Markup Language Meta Tags --}}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords"
+        content="E-UMKM, Web Application, UMKM, Agile Software Development, Informatika Universitas Ciputra Surabaya" />
+    <meta name="description"
+        content="E-UMKM adalah Aplikasi Sistem Manajemen Berbasis Web untuk Komunitas Event Organizer yang mengadakan Bazaar UMKM dengan memberikan akses kepada pelanggan dalam mengelola informasi UMKM yang telah melakukan pendaftaran untuk penyewaan tenant." />
+    <meta name="owner"
+        content="Nur Azizah, Daniel Aprillio Budiono, Mahadi Rafi Winata, Oey Darryl Valencio Wijaya, Probo Krishnacahya, Nathaniel Axel Soetrisno." />
+    <meta name="theme-color" content="#F97316">
+
+    {{-- Title --}}
+    <title>@yield('title')</title>
+
+    {{-- Favicon --}}
+    <link rel="icon" href="{{ url('images/favicon.svg?v=2') }}" type="image/svg" />
+
+    {{-- Laravel CSRF Token --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    {{-- External CSS --}}
+    <link rel="stylesheet" href="{{ url('/css/style.css') }}" type="text/css" />
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    {{-- Google Fonts CDN --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;800&display=swap" rel="stylesheet">
 
-    <!-- Scripts -->
+    {{-- Alpine.js CDN --}}
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    {{-- Scripts --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
-    <!-- Styles -->
+    {{-- Styles --}}
     @livewireStyles
 </head>
 
@@ -25,29 +45,28 @@
     <x-banner />
 
     <div class="min-h-screen bg-gray-100">
+        {{-- Header --}}
         @livewire('navigation-menu')
 
-        <!-- Page Heading -->
-        @if (isset($header))
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
-        @endif
-
-        <!-- Page Content -->
-        <main>
-            {{ $slot }}
+        {{-- Content --}}
+        <main class="container max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 space-y-8">
+            <div class="font-sans text-gray-900 antialiased">
+                @if (isset($header))
+                    <header>
+                        {{ $header }}
+                    </header>
+                @endif
+                <br>
+                {{ $slot }}
+            </div>
         </main>
     </div>
 
     @stack('modals')
 
     @livewireScripts
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
-    </script>
+    {{-- Footer --}}
+    <x-footer />
 
 </body>
 
