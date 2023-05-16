@@ -1,15 +1,17 @@
+@section('title', 'Login')
+
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <x-authentication-card-logo />
+            <img src="{{ url('images/logo.svg') }}" alt="E-UMKM">
         </x-slot>
 
         <x-validation-errors class="mb-4" />
 
         @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
-            </div>
+        <div class="mb-4 font-medium text-sm text-green-600">
+            {{ session('status') }}
+        </div>
         @endif
 
         <form method="POST" action="{{ route('login') }}">
@@ -25,22 +27,32 @@
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
             </div>
 
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
+            <div class="flex items-center justify-between mt-4">
+                <div>
+                    <label for="remember_me" class="flex items-center cursor-pointer">
+                        <x-checkbox id="remember_me" name="remember" class="cursor-pointer" />
+                        <span class="ml-2 text-sm text-orange-600">{{ __('Remember me') }}</span>
+                    </label>
+                </div>
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+                <div>
+                    @if (Route::has('password.request'))
+                    <a class="underline text-sm text-orange-500 hover:text-orange-600" href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>
-                @endif
+                    @endif
+                </div>
+            </div>
 
-                <x-button class="ml-4">
-                    {{ __('Log in') }}
+            <div class="flex justify-between mt-4">
+                <a href="{{ route('register') }}">
+                    <x-secondary-button>
+                        {{ __('Register') }}
+                    </x-secondary-button>
+                </a>
+
+                <x-button>
+                    Login
                 </x-button>
             </div>
         </form>

@@ -8,17 +8,12 @@
             </h2>
         </x-slot>
 
-        @if (Auth::user())
+        @auth
         <div>
             <h1>Halo, {{ Auth::user()->name }}</h1>
         </div>
-        
-        @else
-        <div>
-            <h1>Welcome to E-UMKM </h1>
-        </div>
-        @endif
+        @endauth
 
-        
+
     </div>
 </x-app-layout>
