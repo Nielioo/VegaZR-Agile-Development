@@ -31,7 +31,25 @@ class EventController extends Controller
      */
     public function store(StoreEventRequest $request)
     {
-        //
+        $this->validate($request, [
+            'Image1' => 'required|image|mimes:jpg,png,jpeg',
+            'Image2' => 'required|image|mimes:jpg,png,jpeg'
+        ]);
+
+        $map_image_path = $request->file('Image1')->store('Image', 'public');
+        $poster_image_path = $request->file('Image2')->store('Image', 'public');
+
+        $data = Event::create([
+            'name' => $request->name,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'start_time' => $request->start_time,
+            'end_time' => $request->end_time,
+            'map_tenant' => $map_image_path,
+            'poster' => $poster_image_path,
+            'map_tenant' => $request->map_tenant,
+
+        ]);
     }
 
     /**
