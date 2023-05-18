@@ -7,7 +7,7 @@
 
     <x-validation-errors class="mb-4" />
 
-    <form method="POST" action="{{ route('event.create') }}">
+    <form method="POST" action="{{ route('event.create') }}" enctype="multipart/form-data">
         @csrf
 
         <div>
@@ -51,7 +51,13 @@
         </div>
 
         <div class="mt-4">
-            <x-button class="ml-4">
+            <x-label for="location_address" value="{{ __('Location Address') }}" />
+            <x-input id="location_address" class="block mt-1 w-full" type="text" name="location_address" :value="old('location_address')" required />
+        </div>
+
+
+        <div class="mt-4">
+            <x-button>
                 {{ __('Create Event') }}
             </x-button>
         </div>
