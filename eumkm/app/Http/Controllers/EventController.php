@@ -32,12 +32,12 @@ class EventController extends Controller
     public function store(StoreEventRequest $request)
     {
         $this->validate($request, [
-            'Image1' => 'required|image|mimes:jpg,png,jpeg',
-            'Image2' => 'required|image|mimes:jpg,png,jpeg'
+            'poster' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'map_tenant' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
         ]);
 
-        $map_image_path = $request->file('Image1')->store('Image', 'public');
-        $poster_image_path = $request->file('Image2')->store('Image', 'public');
+        $map_image_path = $request->file('map_tenant')->store('Image', 'public');
+        $poster_image_path = $request->file('poster')->store('Image', 'public');
 
         $data = Event::create([
             'name' => $request->name,
@@ -47,8 +47,7 @@ class EventController extends Controller
             'end_time' => $request->end_time,
             'map_tenant' => $map_image_path,
             'poster' => $poster_image_path,
-            'map_tenant' => $request->map_tenant,
-
+            'location_address' => $request->location_address,
         ]);
     }
 

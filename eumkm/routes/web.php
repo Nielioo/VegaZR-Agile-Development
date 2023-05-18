@@ -33,6 +33,10 @@ Route::middleware([
 
     // Event
     Route::get('/events/', [App\Http\Controllers\EventController::class, 'index'])->name('event');
+    Route::post('/events/create', [App\Http\Controllers\EventController::class, 'store'])->name('event.create');
+    Route::get('/events/addevent', function(){
+        return view('events.addevent');
+    })->name('event.addevent');
     Route::get('/events/{id}/show', [App\Http\Controllers\EventController::class, 'show'])->name('event.show');
 
     // Booking
