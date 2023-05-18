@@ -32,8 +32,8 @@ class EventController extends Controller
     public function store(StoreEventRequest $request)
     {
         $this->validate($request, [
-            'poster' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-            'map_tenant' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
+            'poster' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
+            'map_tenant' => 'required|image|mimes:jpg,png,jpeg,gif,svg'
         ]);
 
         $map_image_path = $request->file('map_tenant')->store('Image', 'public');
@@ -49,6 +49,8 @@ class EventController extends Controller
             'poster' => $poster_image_path,
             'location_address' => $request->location_address,
         ]);
+
+        return redirect()->route('event');
     }
 
     /**
