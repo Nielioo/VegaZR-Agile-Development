@@ -18,10 +18,10 @@ class BookingController extends Controller
     public function index($id)
     {
         //
-        $umkm = DB::table('u_m_k_m_s')->where('id', $id)->first();
+        $data['umkm'] = UMKM::latest()->get();
         // var_dump($umkm);
         // die();
-        return view('booking.index', compact('umkm'));
+        return view('booking.index', compact('data'));
     }
 
     /**

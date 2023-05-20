@@ -28,11 +28,16 @@ Route::middleware([
     })->name('dashboard');
 
     // UMKM
+    Route::get('/umkm/addumkm', function(){
+        return view('umkm.addumkm');
+    })->name('umkm.addumkm');
+
     Route::get('/umkm', [App\Http\Controllers\UMKMController::class, 'index'])->name('umkm');
     Route::get('/umkm/show', [App\Http\Controllers\UMKMController::class, 'show'])->name('umkm.show');
+    Route::post('/umkm/store', [App\Http\Controllers\UMKMController::class, 'store'])->name('umkm.store');
 
     // Event
-    Route::get('/events/', [App\Http\Controllers\EventController::class, 'index'])->name('event');
+    Route::get('/events', [App\Http\Controllers\EventController::class, 'index'])->name('event');
     Route::post('/events/create', [App\Http\Controllers\EventController::class, 'store'])->name('event.create');
     Route::get('/events/addevent', function(){
         return view('events.addevent');
@@ -41,5 +46,6 @@ Route::middleware([
 
     // Booking
     Route::get('/booking/{id}', [App\Http\Controllers\BookingController::class, 'index'])->name('booking.index');
-    Route::post('/booking/store', [App\Http\Controllers\BookingController::class, 'store'])->name('booking.store');
+    // Route::post('/booking/store', [App\Http\Controllers\BookingController::class, 'store'])->name('booking.store');
+    Route::post('/booking/create', [App\Http\Controllers\BookingController::class, 'store'])->name('booking.create');
 });
