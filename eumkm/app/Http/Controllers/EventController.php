@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\EventUser;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 
@@ -13,7 +15,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $data = Event::all();
+        $data = Event::whereIn('id', EventUser::where('user_id', auth()->user()->id)->pluck('event_id'))->get();
 
         return view('events.index', compact('data'));
     }
@@ -33,7 +35,8 @@ class EventController extends Controller
     {
         $this->validate($request, [
             'poster' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
-            'map_tenant' => 'required|image|mimes:jpg,png,jpeg,gif,svg'
+            'map_tenant' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
+            'sum_tenant' => 'required|integer|min:1'
         ]);
 
         $map_image_path = $request->file('map_tenant')->store('Image', 'public');
@@ -48,6 +51,12 @@ class EventController extends Controller
             'map_tenant' => $map_image_path,
             'poster' => $poster_image_path,
             'location_address' => $request->location_address,
+            'sum_tenant' => $request->sum_tenant,
+        ]);
+
+        EventUser::create([
+            'event_id' => $data->id,
+            'user_id' => auth()->user()->id,
         ]);
 
         return redirect()->route('event');
@@ -80,8 +89,9 @@ class EventController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Event $event)
+    public function destroy($id)
     {
-        //
+        Event::findOrFail($id)->delete();
+        return redirect()->route('event');
     }
 }

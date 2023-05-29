@@ -8,7 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Booking extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'umkm_id','start_date','end_date','start_time','end_time', 'tipe', 'nomor_peta', 'proof_payment'
+    protected $guarded = [
+        'id'
     ];
+
+    public function event(){
+        return $this->belongsTo(Event::class);
+    }
 }

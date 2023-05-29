@@ -1,38 +1,15 @@
-@section('title', 'Bookings')
+@section('title', 'Booking Canceled')
 
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-between">
             <div>
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    Bookings
+                    Booking Canceled
                 </h2>
-            </div>
-
-            <div>
-                <a href="{{ route('event_addBooking', ['id'=>$data->id]) }}" class="cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-orange-500">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                        <title>Add Booking</title>
-                    </svg>
-                </a>
             </div>
         </div>
     </x-slot>
-
-    <a href="{{ route('booking_canceled', $data->id) }}" class="font-medium">
-            <div class='mt-4'>
-                <span class="hidden lg:flex gap-2 items-center px-2 py-1 rounded-lg border-2 border-black font-medium">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                        stroke="currentColor" class="w-5 h-5">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0" />
-                        <title>Jumlah UMKM yang membatalkan registrasi</title>
-                    </svg>
-                    {{ count($data_cancel) . ' UMKM Has Canceled Registration' }}
-                </span>
-            </div>
-</a>
 
     <div class="space-y-8 mt-4">
         @if (session('success'))
@@ -51,7 +28,7 @@
             <table class="min-w-full">
                 <thead class="bg-gray-500 text-white">
                     <tr>
-                    <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-6 py-3">
                             UMKM Name
                         </th>
                         <th scope="col" class="px-6 py-3">
@@ -81,7 +58,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($data_bookings as $booking)
+                    @forelse ($data_canceled as $booking)
                     <tr class="odd:bg-white even:bg-gray-200">
                         <td class="px-6 py-4">
                             {{ $booking->umkm_name }}
@@ -114,7 +91,7 @@
                             <div class="mt-4">
                                 <a href="{{ route('booking.update', $booking->id) }}" class="font-medium">
                                     <button class="w-full inline-flex justify-center items-center space-x-2 rounded focus:outline-none px-3 py-2 leading-6 bg-yellow-500 hover:bg-yellow-600 focus:ring focus:ring-yellow-500 focus:ring-opacity-50 active:bg-yellow-500 active:border-yellow-500">
-                                        <p class="font-semibold text-white">Canceled</p>
+                                        <p class="font-semibold text-white">Registered</p>
                                     </button>
                                 </a>
                             </div>

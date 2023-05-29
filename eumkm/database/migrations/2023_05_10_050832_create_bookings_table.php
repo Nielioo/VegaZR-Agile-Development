@@ -18,20 +18,22 @@ return new class extends Migration
         //     'proof_payment' => $request->proof_payment,
 
         Schema::create('bookings', function (Blueprint $table) {
-
-
             $table->id();
-            $table->unsignedBigInteger('umkm_id');
-            $table->foreign('umkm_id')->references('id')->on('u_m_k_m_s')
+            $table->unsignedBigInteger('event_id');
+            $table->foreign('event_id')->references('id')->on('events')
             ->onUpdate('cascade')
             ->onDelete('cascade');
             $table->date('start_date');
             $table->date('end_date');
             $table->time('start_time');
             $table->time('end_time');
-            $table->string('tipe');
-            $table->string('nomor_peta');
+            $table->string('type');
+            $table->string('status');
+            $table->string('map_number');
             $table->string('proof_payment');
+            $table->string('umkm_name');
+            $table->string('umkm_manager');
+            $table->string('umkm_phone');
             $table->timestamps();
         });
     }

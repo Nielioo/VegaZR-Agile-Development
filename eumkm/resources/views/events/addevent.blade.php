@@ -42,6 +42,11 @@
         </div>
 
         <div class="mt-4">
+            <x-label for="sum_tenant" value="{{ __('Sum Tenant') }}" />
+            <x-input id="sum_tenant" class="block mt-1 w-full" type="text" name="sum_tenant" :value="old('sum_tenant')" required />
+        </div>
+
+        <div class="mt-4">
             <x-label for="location_address" value="{{ __('Location Address') }}" />
             <x-input id="location_address" class="block mt-1 w-full" type="text" name="location_address" :value="old('location_address')" required />
         </div>

@@ -84,7 +84,21 @@
                             {{ $event->location_address }}
                         </td>
                         <td class="px-6 py-4">
-                            <a href="{{ route('booking.index', $event->id) }}" class="font-medium text-orange-500">Registered UMKM</a>
+                            <div class="mt-4">
+                                <a href="{{ route('booking.index', $event->id) }}" class="font-medium">
+                                    <button class="w-full inline-flex justify-center items-center space-x-2 rounded focus:outline-none px-3 py-2 leading-6 bg-green-500 hover:bg-green-600 focus:ring focus:ring-green-500 focus:ring-opacity-50 active:bg-green-500 active:border-green-500">
+                                        <p class="font-semibold text-white">See Registered UMKM</p>
+                                    </button>
+                                </a>
+                            </div>
+
+                            <div class="mt-4">
+                                <a href="{{ route('event.destroy', $event->id) }}" class="font-medium">
+                                    <button class="w-full inline-flex justify-center items-center space-x-2 rounded focus:outline-none px-3 py-2 leading-6 bg-red-500 hover:bg-red-600 focus:ring focus:ring-red-500 focus:ring-opacity-50 active:bg-red-500 active:border-red-500">
+                                        <p class="font-semibold text-white">Delete</p>
+                                    </button>
+                                </a>
+                            </div>
                         </td>
                     </tr>
                     @empty

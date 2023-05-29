@@ -15,7 +15,7 @@ use App\Http\Controllers\BookingController;
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+    return redirect()->route('login');
 })->name('/');
 
 Route::middleware([
@@ -43,8 +43,13 @@ Route::middleware([
         return view('events.addevent');
     })->name('event.addevent');
     Route::get('/events/{id}/show', [App\Http\Controllers\EventController::class, 'show'])->name('event.show');
+    Route::get('/events/{id}/destroy', [App\Http\Controllers\EventController::class, 'destroy'])->name('event.destroy');
 
     // Booking
     Route::get('/booking/{id}', [App\Http\Controllers\BookingController::class, 'index'])->name('booking.index');
-    Route::post('/booking/create', [App\Http\Controllers\BookingController::class, 'store'])->name('booking.create');
+    Route::post('/booking/{id}/store', [App\Http\Controllers\BookingController::class, 'store'])->name('booking.store');
+    Route::get('/booking/{id}/create', [App\Http\Controllers\BookingController::class, 'create'])->name('event_addBooking');
+    Route::get('/booking/{id}/update', [App\Http\Controllers\BookingController::class, 'update'])->name('booking.update');
+    Route::get('/booking-canceled/{id}', [App\Http\Controllers\BookingController::class, 'bookingCanceledIndex'])->name('booking_canceled');
+    Route::get('/booking/destroy/{id}', [App\Http\Controllers\BookingController::class, 'destroy'])->name('booking.destroy');
 });
