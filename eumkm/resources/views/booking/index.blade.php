@@ -24,8 +24,8 @@
                     @empty
                     @endforelse
                 </select>
-                
-                
+
+
             </div>
 
             <div class="mt-4 w-full">
@@ -69,9 +69,9 @@
             <x-label for="tipe" value="{{ __('Tipe') }}" />
             <select  name="tipe" id="tipe" class="border-gray-300 focus:border-orange-500 focus:ring-orange-500 rounded-md shadow-sm' block mt-1 w-full" type="text" required>
                 <option >--Select Tipe--</option>
-                
+
                 <option value="Makanan & Minuman">Makanan & Minuman</option>
-                
+
             </select>
         </div>
 
@@ -79,17 +79,17 @@
             <x-label for="nomor_peta" value="{{ __('Nomor Peta') }}" />
             <select  name="nomor_peta" id="nomor_peta" class="border-gray-300 focus:border-orange-500 focus:ring-orange-500 rounded-md shadow-sm' block mt-1 w-full" type="text" required>
                 <option >--Select Nomor Peta--</option>
-                
+
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
-                
+
             </select>
         </div>
 
         <div class="mt-4">
-            <x-label for="bukti_pembayaran" value="{{ __('Bukti_pembayaran') }}" />
-            <x-input id="bukti_pembayaran" class="block mt-1 w-full cursor-pointer" type="file" name="bukti_pembayaran" />
+            <x-label for="proof_payment" value="{{ __('Bukti Pembayaran') }}" />
+            <x-input id="proof_payment" class="block mt-1 w-full cursor-pointer" type="file" name="proof_payment" required />
         </div>
 
         <div class="mt-4">

@@ -17,10 +17,7 @@ class BookingController extends Controller
      */
     public function index($id)
     {
-        //
         $data['umkm'] = UMKM::latest()->get();
-        // var_dump($umkm);
-        // die();
         return view('booking.index', compact('data'));
     }
 
@@ -39,14 +36,21 @@ class BookingController extends Controller
 
     public function store(Request $request)
     {
-        // 
+        //
         $this->validate($request, [
-
-            'proof_payment' => 'required'
+            'proof_payment' => 'required|image|mimes:jpg,png,jpeg,gif,svg'
         ]);
+
+        $proof_payment_image_path = $request->file('proof_payment')->store('Image', 'public');
 
         $booking = Booking::create([
             'umkm_id' => $request->umkm_id,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'start_time' => $request->start_time,
+            'end_time' => $request->end_time,
+            'tipe' => $request->tipe,
+            'nomor_peta' => $request->nomor_peta,
             'proof_payment' => $request->proof_payment,
 
         ]);

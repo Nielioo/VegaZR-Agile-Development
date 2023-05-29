@@ -9,6 +9,6 @@ class Booking extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'umkm_id', 'proof_payment'
+        'umkm_id','start_date','end_date','start_time','end_time', 'tipe', 'nomor_peta', 'proof_payment'
     ];
 }

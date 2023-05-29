@@ -46,6 +46,5 @@ Route::middleware([
 
     // Booking
     Route::get('/booking/{id}', [App\Http\Controllers\BookingController::class, 'index'])->name('booking.index');
-    // Route::post('/booking/store', [App\Http\Controllers\BookingController::class, 'store'])->name('booking.store');
     Route::post('/booking/create', [App\Http\Controllers\BookingController::class, 'store'])->name('booking.create');
 });
