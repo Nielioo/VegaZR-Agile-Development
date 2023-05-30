@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}" class="flex items-center py-4 mr-4">
+                    <a href="{{ route('event') }}" class="flex items-center py-4 mr-4">
                         <img src="{{ url('images/logo.svg') }}" alt="E-UMKM">
                     </a>
                 </div>
