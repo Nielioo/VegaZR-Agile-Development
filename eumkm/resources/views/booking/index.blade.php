@@ -112,11 +112,6 @@
                                 </a>
                             </div>
                             <div class="mt-4">
-                                <button class="w-full inline-flex justify-center items-center space-x-2 rounded focus:outline-none px-3 py-2 leading-6 bg-blue-500 hover:bg-blue-600 focus:ring focus:ring-blue-500 focus:ring-opacity-50 active:bg-blue-500 active:border-blue-500">
-                                    <p class="font-semibold text-white">Edit</p>
-                                </button>
-                            </div>
-                            <div class="mt-4">
                                 <a href="{{ route('booking.destroy', $booking->id) }}" class="font-medium">
                                     <button class="w-full inline-flex justify-center items-center space-x-2 rounded focus:outline-none px-3 py-2 leading-6 bg-red-500 hover:bg-red-600 focus:ring focus:ring-red-500 focus:ring-opacity-50 active:bg-red-500 active:border-red-500">
                                         <p class="font-semibold text-white">Delete</p>
@@ -141,15 +136,6 @@
                 @endforelse
                 </tbody>
             </table>
-        </div>
-
-        <div class="flex justify-between">
-            <a href="{{ route('event.edit', ['id' => $data->id]) }}">
-                <x-primary-button>Edit Event</x-primary-button>
-            </a>
-            <a href="{{ route('event_addBooking', ['id' => $data->id]) }}">
-                <x-danger-button>Delete Event</x-danger-button>
-            </a>
         </div>
     </div>
 </x-app-layout>
