@@ -144,7 +144,7 @@
         </div>
 
         <div class="flex justify-between">
-            <a href="{{ route('event_addBooking', ['id' => $data->id]) }}">
+            <a href="{{ route('event.edit', ['id' => $data->id]) }}">
                 <x-primary-button>Edit Event</x-primary-button>
             </a>
             <a href="{{ route('event_addBooking', ['id' => $data->id]) }}">

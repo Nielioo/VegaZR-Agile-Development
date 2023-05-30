@@ -73,17 +73,47 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Event $event)
+    public function edit($id)
     {
-        //
+        $event_id = Event::findOrFail($id)->id;
+        $data = Event::findOrFail($event_id);
+        return redirect()->route('event.edit', ['id'=>$data->id]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateEventRequest $request, Event $event)
+    public function update(UpdateEventRequest $request, $id)
     {
-        //
+        $event_id = Event::findOrFail($id)->id;
+
+        $this->validate($request, [
+            'poster' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
+            'map_tenant' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
+            'sum_tenant' => 'required|integer|min:1'
+        ]);
+
+        $map_image_path = $request->file('map_tenant')->update('Image', 'public');
+        $poster_image_path = $request->file('poster')->update('Image', 'public');
+
+        $data = Event::create([
+            'name' => $request->name,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'start_time' => $request->start_time,
+            'end_time' => $request->end_time,
+            'map_tenant' => $map_image_path,
+            'poster' => $poster_image_path,
+            'location_address' => $request->location_address,
+            'sum_tenant' => $request->sum_tenant,
+        ]);
+
+        EventUser::create([
+            'event_id' => $data->id,
+            'user_id' => auth()->user()->id,
+        ]);
+
+        return redirect()->route('event');
     }
 
     /**
