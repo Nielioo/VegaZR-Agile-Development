@@ -1,7 +1,5 @@
 # VegaZR-Agile-Development
 
-# Laravel 10 & Tailwind Project with Jetstream Library
-
 This is a step-by-step guide to help you install and run a Laravel 10 project that incorporates Tailwind CSS and the Jetstream library.
 
 ## Prerequisites
